@@ -1,41 +1,18 @@
-package org.acasado.poointerfaces.repositorio;
+package org.acasado.poointerfaces.repositorio.lista;
 
 import org.acasado.poointerfaces.modelo.Cliente;
+import org.acasado.poointerfaces.repositorio.AbstractaListRepositorio;
+import org.acasado.poointerfaces.repositorio.Direccion;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio {
+public  class ClienteListRepositorio extends AbstractaListRepositorio<Cliente> {
 
-    private List<Cliente> dataSource;
 
-    public ClienteListRepositorio() {
-        this.dataSource= new ArrayList<>();
-    }
 
-    @Override
-    public List<Cliente> listar() {
-        return dataSource;
-    }
 
-    @Override
-    public Cliente porId(Integer id) {
-        Cliente resultado = null;
-        for (Cliente cli: dataSource){
-            if (cli.getId()!=null && cli.equals(id)){
-                resultado= cli;
-                break;
-            }
-        }
-        return resultado;
-    }
 
-    @Override
-    public void crear(Cliente cliente) {
-        this.dataSource.add(cliente);
-
-    }
 
     @Override
     public void editar(Cliente cliente) {
@@ -44,11 +21,7 @@ public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio
     c.setApellido(cliente.getApellido());
     }
 
-    @Override
-    public void eliminar(Integer id) {
 
-    this.dataSource.remove(this.porId(id));
-    }
 
     @Override
     public List<Cliente> listar(String campo, Direccion dir) {
@@ -75,11 +48,6 @@ public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio
     }
 
 
-    @Override
-    public List<Cliente> listar(int desde, int hasta) {
-        return dataSource.subList(desde,hasta);
-    }
-
     public static int ordenar(String campo,Cliente a, Cliente b) {
         int resultado = 0;
         switch (campo) {
@@ -92,8 +60,9 @@ public class ClienteListRepositorio implements OrdenablePaginableCrudRepositorio
         return resultado;
     }
 
+
     @Override
-    public int total() {
-        return this.dataSource.size();
+    public List<Cliente> listar(int desde, int hasta) {
+        return List.of();
     }
 }
