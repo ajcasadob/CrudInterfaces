@@ -53,5 +53,9 @@ public class EjemploRepositorio {
         repo.eliminar(2);
 
         repo.listar().forEach(System.out::println);
+
+
     }
+
+
 }
