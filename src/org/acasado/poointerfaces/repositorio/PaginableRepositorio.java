@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface PaginableRepositorio<T> {
 
-    List<Cliente> listar (int desde, int hasta);
+    List<T> listar (int desde, int hasta);
 
 }
